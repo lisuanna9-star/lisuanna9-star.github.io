@@ -239,7 +239,25 @@
     #projects .filters {
       margin-bottom: 24px;
     }
+    #services .section-head,
+    #journey .section-head {
+      margin-bottom: 10px;
+    }
+    #services .filters,
+    #journey .filters {
+      margin-bottom: 24px;
+    }
     #projects .project-link {
+      margin-top: 12px;
+    }
+    #services .project-link,
+    #journey .project-link {
+      margin-top: 12px;
+    }
+    #journey .project-card[data-category="music"] .project-link {
+      margin-top: 6px;
+    }
+    #projects .project-link.spaced-link {
       margin-top: 12px;
     }
     .projects-grid, .services-grid, .timeline-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -470,9 +488,9 @@
             <h3>基本介绍</h3>
             <p>李金昕 | 22岁 | 热爱探索，喜欢尝试</p>
             <div class="info-list">
-              <div class="info-pill"><strong>学业情况</strong><br><span class="info-gap">foundation unit: 86/80 <span class="info-note">（平均分）</span><br>绩点：3.44 <span class="info-note">（医学院一年更新一次）</span></span></div>
-              <div class="info-pill"><strong>参与项目</strong><br><span class="info-gap">3+项医学院项目<br><span class="info-note">-健康促进大创</span><br><span class="info-note">-综述写作</span><br><span class="info-note">-AJCC第9版写作</span></span></div>
-              <div class="info-pill"><strong>个人探索</strong><br><span class="info-gap">3项不同作品</span></div>
+              <div class="info-pill"><strong>学业情况</strong><br><span class="info-gap">foundation unit: 86/80 <span class="info-note">（平均分）</span><br>绩点：3.45 <span class="info-note">（医学院一年更新一次）</span></span></div>
+              <div class="info-pill"><strong>参与项目</strong><br><span class="info-gap">多项医学院项目<br><span class="info-note">-健康促进大创</span><br><span class="info-note">-综述写作</span><br><span class="info-note">-AJCC第9版写作</span></span></div>
+              <div class="info-pill"><strong>个人探索</strong><br><span class="info-gap">AI协助诊断小程序、个人网站、公众号</span></div>
               <div class="info-pill"><strong>社会服务</strong><br><span class="info-gap">60+小时，涵盖各方各面</span></div>
             </div>
           </article>
@@ -496,48 +514,45 @@
           <button class="filter-chip" data-filter="writing">交流项目</button>
         </div>
         <div class="projects-grid">
-          <article class="project-card fade-in" data-group="projects" data-category="health"><div class="project-visual"></div><h3>眼睑结膜肿瘤早诊早治与长期随访的健康促进模式研究</h3><p>结合问卷与SQL，建立健康促进成效评价体系，探索健康促进模式。</p><div class="tag-row"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="project-link" href="#contact">查看联系方式 →</a></article>
+          <article class="project-card fade-in" data-group="projects" data-category="health"><div class="project-visual has-image"><img src="orbital lab.jpg" alt="眼肿瘤项目照片"></div><h3>眼睑结膜肿瘤早诊早治与长期随访的健康促进模式研究</h3><p>-结合项目组开发的AI模型，了解AI诊断方法设计以及初步结果。<br>-结合问卷与SQL，建立健康促进成效评价体系，探索健康促进模式。<br>-学习PRD写作，将想法落地成为可执行、可写作、可迭代的方案。<br>-跟随导师门诊，通过shadowing了解临床一线情况。</p><div class="tag-row"><span>SQL</span><span>Shadowing</span><span>PRD</span><span>AI agent</span></div><a class="project-link" href="https://mp.weixin.qq.com/s/uOVehVeYpSTvffFKvE7gfQ" target="_blank" rel="noreferrer">项目推广公众号EYECAN →</a></article>
+          <article class="project-card fade-in" data-group="projects" data-category="health"><div class="project-visual has-image"><img src="helper.jpg" alt="眼肿瘤知识问答助手"></div><h3>Eye tumor agent: 眼肿瘤知识问答助手</h3><p>自主搭建了一个面向眼肿瘤知识问答场景的应用模型。<br>-包含微信小程序前端、H5 网页端和 Node.js 后端的整体搭建。<br>-提问后由后端先联网检索权威医学资料，再调用大模型生成中文回答，并将来源链接和风险提示一并返回展示。<br>-模型系统支持本地 mock 和真实联网模式切换，目前展示的是H5网页版，小程序仍在真机测试与上线阶段。</p><div class="tag-row"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="project-link" href="https://eye-tumor-agent.onrender.com/" target="_blank" rel="noreferrer">查看H5网页（小程序申请上线中） →</a></article>
+          <article class="project-card fade-in" data-group="projects" data-category="health"><div class="project-visual has-image"><img src="yaolan.jpg" alt="摇篮计划："></div><h3>摇篮计划：眼睛上长「粒粒」了？--眼肿瘤科普团队</h3><p>进行科普摆摊，制作与眼肿瘤相关的科普视频（情景剧+动画），进行科普宣传，并入选摇篮计划“乔木项目”。</p><div class="tag-row"><span>Video Making</span><span>Communication</span><span>Collaboration</span></div><a class="project-link spaced-link" href="https://mp.weixin.qq.com/s/VAurqueMUykjhUAqueFwaw" target="_blank" rel="noreferrer">原创微电影：《眼睛的秘密警报》 →</a></article>
           <article class="project-card fade-in" data-group="projects" data-category="research"><div class="project-visual has-image"><img src="CAF.jpg" alt="CAFs 论文截图"></div><h3>Cancer-associated fibroblasts in the tumor microenvironment: heterogeneity, crosstalk mechanisms, and therapeutic implications</h3><p>发表在Molecular Cancer，探讨肿瘤微环境中癌相关成纤维细胞（CAFs）的类型、相互作用、治疗效用。</p><div class="tag-row"><span>Research</span><span>Biorender</span><span>Review</span></div><a class="project-link" href="https://pubmed.ncbi.nlm.nih.gov/41413569/" target="_blank" rel="noreferrer">原文链接 →</a></article>
           <article class="project-card fade-in" data-group="projects" data-category="research"><div class="project-visual has-image"><img src="AJCC.jpg" alt="AJCC 项目截图"></div><h3>参与AJCC Version 9 Cancer Staging System写作</h3><p>涉及Locally Advanced Sebaceous Carcinoma与Mucinous eccrine carcinoma，主要包括病种的亚型、分期、预后、诊断与治疗方式，以及illustrative cases。</p><div class="tag-row"><span>Writing</span><span>Review</span><span>Statement</span></div></article>
-          <article class="project-card fade-in" data-group="projects" data-category="writing"><div class="project-visual has-image"><img src="uottawa.jpg" alt="UGME 项目照片"></div><h3>the Ottawa-Shanghai Joint School of Medicine (OSJSM) Undergraduate Medical Education program (UGME)</h3><p>渥太华大学与上海交大医学院联合的医学教育遴选项目</p><div class="tag-row"><span>Writing</span><span>Bilingual</span><span>Communication</span></div></article>
+          <article class="project-card fade-in" data-group="projects" data-category="writing"><div class="project-visual has-image"><img src="uottawa.jpg" alt="UGME 项目照片"></div><h3>the Ottawa-Shanghai Joint School of Medicine (OSJSM) Undergraduate Medical Education program (UGME)</h3><p>渥太华大学与上海交大医学院联合的医学教育遴选项目，大三暑假将前往渥太华大学医学院进行临床实习。</p><div class="tag-row"><span>Writing</span><span>Bilingual</span><span>Communication</span></div></article>
         </div>
       </div>
     </section>
     <section class="section-block" id="services">
       <div class="shell">
         <div class="section-head fade-in">
-          <div><p class="eyebrow">Practice / 社会实践</p><h2 class="section-title">把你参与过的实践活动、组织工作和责任感展示出来</h2></div>
-          <p class="section-intro">这一部分可以放志愿活动、社会调研、学生工作、活动组织或其他实践经历，让页面不只是展示项目，也展示你和现实世界的连接。</p>
+          <div><p class="eyebrow">Practice / 社会实践</p></div>
         </div>
         <div class="filters fade-in" data-group="practice">
           <button class="filter-chip active" data-filter="all">全部</button>
-          <button class="filter-chip" data-filter="volunteer">志愿服务</button>
-          <button class="filter-chip" data-filter="organization">组织协调</button>
-          <button class="filter-chip" data-filter="public">公共参与</button>
+          <button class="filter-chip" data-filter="volunteer">社会实践</button>
+          <button class="filter-chip" data-filter="organization">志愿服务</button>
+          <button class="filter-chip" data-filter="public">实习经历（待更新）</button>
         </div>
         <div class="projects-grid">
-          <article class="project-card fade-in" data-group="practice" data-category="volunteer"><div class="project-visual"></div><h3>志愿服务</h3><p>可以写你参加过的志愿活动、服务对象、参与方式，以及你在其中承担的职责。</p><div class="tag-row"><span>Volunteer</span><span>Service</span><span>Care</span></div><a class="project-link" href="#contact">继续交流 →</a></article>
-          <article class="project-card fade-in" data-group="practice" data-category="organization"><div class="project-visual"></div><h3>组织协调</h3><p>适合放学生组织、活动筹备、项目协作或班级事务等经历，体现你的执行力和责任感。</p><div class="tag-row"><span>Teamwork</span><span>Execution</span><span>Leadership</span></div><a class="project-link" href="#about">回到个人介绍 →</a></article>
-          <article class="project-card fade-in" data-group="practice" data-category="public"><div class="project-visual"></div><h3>公共参与</h3><p>如果你有讲座、社群、公益、调研或其他社会参与经历，也可以放在这里统一展示。</p><div class="tag-row"><span>Public</span><span>Practice</span><span>Impact</span></div><a class="project-link" href="#journey">查看兴趣爱好 →</a></article>
+          <article class="project-card fade-in" data-group="practice" data-category="volunteer"><div class="project-visual has-image"><img src="social practice.jpg" alt="中学讲座实践照片"></div><h3>眼肿瘤的早期信号与全面眼健康管理”实践团赴圣公会陈融中学圣智堂开展科普讲座</h3><p>讲座包括有眼肿瘤的概念、恶性眼肿瘤的类型区分和人们应当重视的预防措施，礼堂内听众们在问答环节积极主动参与讨论。我还很荣幸地拿到了校方赠送的纪念品和感谢信~</p><div class="tag-row"><span>Volunteer</span><span>Service</span><span>Care</span></div><a class="project-link" href="https://mp.weixin.qq.com/s/gsB8xqdT1khqa4rKAr8LTg" target="_blank" rel="noreferrer">上海九院眼肿瘤团队报道 →</a></article>
+          <article class="project-card fade-in" data-group="practice" data-category="organization"><div class="project-visual has-image"><img src="fuxing.jpg" alt="杏林春暖活动照片"></div><h3>参与“杏林春暖，健康思南”上海交通大学医学院为民服务“健康集市”义诊活动</h3><p>与师姐们、组员们一起，在复兴公园摆摊义诊，为来往市民发放宣传手册，向市民朋友普及眼健康概念与早诊早治的重要性。</p><div class="tag-row"><span>Teamwork</span><span>Volunteer</span><span>Communication</span></div></a></article>
+          <article class="project-card fade-in" data-group="practice" data-category="organization"><div class="project-visual has-image"><img src="shixi.jpg" alt="市西中学讲座照片"></div><h3>主持上海市市西中学眼健康微讲讲座</h3><p>回到母校市西中学，面向高中的同学们宣讲眼健康与眼保健的重要性，并鼓励同学们更进一步探索相关知识。</p><div class="tag-row"><span>Public</span><span>Leadership</span><span>Impact</span></div><a class="project-link" href="https://mp.weixin.qq.com/s/ozmlqjkAQ7JfqAvz5o_-YA" target="_blank" rel="noreferrer">查看同学反馈 →</a></article>
+          <article class="project-card fade-in" data-group="practice" data-category="organization"><div class="project-visual has-image"><img src="mid autumn.jpg" alt="第五人民医院中秋演奏会照片"></div><h3>上海市第五人民医院肾内科中秋演奏会</h3><p>随上海交通大学民乐团为上海市第五人民医院肾内科的患者们表演了耳熟能详的民族音乐，为肾友们带来快乐。</p><div class="tag-row"><span>Teamwork</span><span>Music</span><span>Volunteer</span></div><a class="project-link" href="https://mp.weixin.qq.com/s/7Fh4u4Zzwh7fPdg9LsQfBw" target="_blank" rel="noreferrer">上海市第五人民医院报道 →</a></article>
+          <article class="project-card fade-in" data-group="practice" data-category="volunteer"><div class="project-visual has-image"><img src="court.jpg" alt="法护青春实践照片"></div><h3>上海交通大学法学院“法“护青春实践团赴上海市长宁区人民法院开展调研</h3><p>随上海交通大学大学法学院实践团队来到上海市长宁区人民法院少年法庭调研，和顾薛磊法官与于鹏副庭长深入探讨了“少年犯规制现状及预防未成年人犯罪”这一课题，还参观了很有特色的心理咨询室和少年法庭。</p><div class="tag-row"><span>Law</span><span>Judicature</span></div></a></article>
         </div>
       </div>
     </section>
     <section class="section-block" id="journey">
       <div class="shell">
         <div class="section-head fade-in">
-          <div><p class="eyebrow">Interest / 兴趣爱好</p><h2 class="section-title">用几个清楚的小块展示你在学习之外的兴趣世界</h2></div>
-          <p class="section-intro">这里不一定非要做成时间线，也可以用几个兴趣主题来展示你的性格、审美和长期热爱，让页面更像你本人。</p>
+          <div><p class="eyebrow">Interest / 音乐爱好</p></div>
         </div>
-        <div class="filters fade-in" data-group="interest">
-          <button class="filter-chip active" data-filter="all">全部</button>
-          <button class="filter-chip" data-filter="music">音乐</button>
-          <button class="filter-chip" data-filter="reading">阅读与表达</button>
-          <button class="filter-chip" data-filter="explore">探索新领域</button>
-        </div>
+        
         <div class="projects-grid">
-          <article class="project-card fade-in" data-group="interest" data-category="music"><div class="project-visual"></div><h3>音乐</h3><p>可以写你喜欢的音乐类型、乐器、歌单或者音乐在你生活里扮演的角色。</p><div class="tag-row"><span>Music</span><span>Emotion</span><span>Playlist</span></div><a class="project-link" href="#contact">分享交流 →</a></article>
-          <article class="project-card fade-in" data-group="interest" data-category="reading"><div class="project-visual"></div><h3>阅读与表达</h3><p>适合放你喜欢的书、作者、写作习惯，或者你如何通过表达来整理自己的思考。</p><div class="tag-row"><span>Reading</span><span>Writing</span><span>Thinking</span></div><a class="project-link" href="#projects">回到项目经历 →</a></article>
-          <article class="project-card fade-in" data-group="interest" data-category="explore"><div class="project-visual"></div><h3>探索新领域</h3><p>这里可以写跨学科兴趣、新技术、新主题，或者任何能代表你好奇心的内容。</p><div class="tag-row"><span>Curiosity</span><span>AI</span><span>Interdisciplinary</span></div><a class="project-link" href="#about">了解我 →</a></article>
+          <article class="project-card fade-in" data-group="interest"><div class="project-visual has-image"><img src="zide.jpg" alt="音乐爱好照片"></div><h3>参与自得琴社&上海交通大学学生民乐团专场音乐会</h3><p>在音乐会中表演爵士民族室内乐Fly me to the Moon（首演），感受了爵士与民乐的碰撞。</p><a class="project-link" href="https://mp.weixin.qq.com/s/JCavNtHEPC9r4vVRgKaP8w" target="_blank" rel="noreferrer">演出现场视频与解读 →</a></article>
+          <article class="project-card fade-in" data-group="interest"><div class="project-visual has-image"><img src="kuanian.jpg" alt="跨年晚会演出照片"></div><h3>参与12.31“冬·一起跨年”交大跨年晚会演出</h3><p>负责民族室内乐《千里》的扬琴声部。《千里》是我很喜欢的一首室内乐，很开心能在跨年晚会演出！</p><a class="project-link" href="https://www.bilibili.com/video/BV1k3iyBnExU/?share_source=copy_web" target="_blank" rel="noreferrer">演出现场视频 →</a></article>
+          <article class="project-card fade-in" data-group="interest"><div class="project-visual has-image"><img src="dunhuang.jpg" alt="敦煌杯比赛照片"></div><h3>随交韵室内乐团参加第三届“敦煌杯”中国民族室内乐重奏比赛，《沙海艺境》荣获非职业青年组全国金奖</h3><p>负责wood block声部，获得了作为评委的王建民老师的充分认可和鼓励，室内乐团也作为“敦煌杯”非职业青年组冠军队伍，受邀参加了第五届北京国乐节开幕式暨敦煌杯室内乐重奏、合奏比赛华彩集锦音乐会。</p></a></article>
         </div>
       </div>
     </section>
@@ -549,7 +564,7 @@
         <div class="contact-grid">
           <article class="contact-panel fade-in">
             <p>留言板</p>
-            <form id="contactForm">
+            <form id="contactForm" action="https://formspree.io/f/xvzbnqba" method="POST">
               <input class="field" type="text" name="name" placeholder="你的名字">
               <input class="field" type="email" name="email" placeholder="你的邮箱">
               <textarea class="field" name="message" placeholder="想聊点什么？"></textarea>
@@ -560,7 +575,7 @@
             <h3>直接联系</h3>
             <p>我的联系方式：</p>
             <div class="contact-stack">
-              <div class="contact-item"><strong>Email: </strong><a href="mailto:lisuanna9@gmail.com">lisuanna9@gmail.com</a></div>
+              <div class="contact-item"><strong>Email: </strong><span>lisuanna9 at gmail.com</span></div>
               <div class="contact-item"><strong>GitHub: </strong><a href="https://github.com/lisuanna9-star" target="_blank" rel="noreferrer">https://github.com/lisuanna9-star</a></div>
             </div>
           </aside>
@@ -573,7 +588,7 @@
       <div class="socials"><a href="#about">About</a><a href="#projects">Projects</a><a href="#services">Practice</a><a href="#contact">Contact</a></div>
     </div>
   </footer>
-  <div class="toast" id="toast">消息已收到。现在这是前端演示版，后续可接入真实表单服务。</div>
+  <div class="toast" id="toast">消息已发送，我会尽快查看。</div>
   <script>
     const typingText = document.getElementById("typingText");
     const phrases = ["医学与AI领域的交叉"];
@@ -638,11 +653,29 @@
     const toast = document.getElementById("toast");
     const contactForm = document.getElementById("contactForm");
     const printButton = document.getElementById("printButton");
-    contactForm.addEventListener("submit", (event) => {
+    contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      toast.classList.add("show");
-      window.setTimeout(() => toast.classList.remove("show"), 2600);
-      contactForm.reset();
+      const formData = new FormData(contactForm);
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+        if (!response.ok) {
+          throw new Error("submit failed");
+        }
+        toast.textContent = "消息已发送，我会尽快查看。";
+        toast.classList.add("show");
+        window.setTimeout(() => toast.classList.remove("show"), 2600);
+        contactForm.reset();
+      } catch (error) {
+        toast.textContent = "发送失败，请稍后重试。";
+        toast.classList.add("show");
+        window.setTimeout(() => toast.classList.remove("show"), 2600);
+      }
     });
     printButton.addEventListener("click", () => {
       window.print();
