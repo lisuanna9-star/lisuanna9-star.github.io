@@ -160,6 +160,13 @@
     .mini-panel, .info-pill, .contact-item {
       padding: 18px; border-radius: var(--radius-lg); background: rgba(255, 253, 248, 0.72); border: 1px solid rgba(24, 32, 28, 0.08);
     }
+    .info-note {
+      font-size: 0.88em;
+    }
+    .info-gap {
+      display: inline-block;
+      margin-top: 6px;
+    }
     .mini-panel ul { margin: 14px 0 0; padding-left: 18px; }
     .section-block { padding: 28px 0; }
     .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; }
@@ -226,10 +233,32 @@
     }
     .filter-chip { padding: 11px 16px; color: var(--muted); }
     .filter-chip.active { background: var(--text); color: #fffaf3; border-color: transparent; }
+    #projects .section-head {
+      margin-bottom: 10px;
+    }
+    #projects .filters {
+      margin-bottom: 24px;
+    }
+    #projects .project-link {
+      margin-top: 12px;
+    }
     .projects-grid, .services-grid, .timeline-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .project-visual {
       aspect-ratio: 4 / 3; border-radius: 22px; margin-bottom: 20px; overflow: hidden; position: relative;
       background: linear-gradient(150deg, rgba(15, 118, 110, 0.16), rgba(239, 124, 93, 0.2));
+    }
+    .project-visual img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .project-visual.has-image::before,
+    .project-visual.has-image::after {
+      display: none;
     }
     .project-visual::before, .project-visual::after { content: ""; position: absolute; border-radius: 24px; transform: rotate(-9deg); }
     .project-visual::before { inset: 16px 70px 60px 16px; background: rgba(255, 253, 248, 0.82); }
@@ -439,12 +468,12 @@
         <div class="grid-two">
           <article class="section-card fade-in">
             <h3>基本介绍</h3>
-            <p>你可以在这里写你的专业背景、学习方向、核心关注点，以及你希望别人记住你的方式。它可以偏学术，也可以偏个人品牌表达。</p>
+            <p>李金昕 | 22岁 | 热爱探索，喜欢尝试</p>
             <div class="info-list">
-              <div class="info-pill"><strong>身份标签</strong><span>学生 / 多方向探索 / 可公开展示</span></div>
-              <div class="info-pill"><strong>个人气质</strong><span>理性、细腻、跨领域、有表达欲</span></div>
-              <div class="info-pill"><strong>展示重点</strong><span>经历、项目、服务、兴趣与联系渠道</span></div>
-              <div class="info-pill"><strong>后续扩展</strong><span>可继续加入简历、博客、照片和真实链接</span></div>
+              <div class="info-pill"><strong>学业情况</strong><br><span class="info-gap">foundation unit: 86/80 <span class="info-note">（平均分）</span><br>绩点：3.44 <span class="info-note">（医学院一年更新一次）</span></span></div>
+              <div class="info-pill"><strong>参与项目</strong><br><span class="info-gap">3+项医学院项目<br><span class="info-note">-健康促进大创</span><br><span class="info-note">-综述写作</span><br><span class="info-note">-AJCC第9版写作</span></span></div>
+              <div class="info-pill"><strong>个人探索</strong><br><span class="info-gap">3项不同作品</span></div>
+              <div class="info-pill"><strong>社会服务</strong><br><span class="info-gap">60+小时，涵盖各方各面</span></div>
             </div>
           </article>
           <article class="section-card fade-in">
@@ -458,19 +487,19 @@
     <section class="section-block" id="projects">
       <div class="shell">
         <div class="section-head fade-in">
-          <div><p class="eyebrow">Projects / 项目经历</p><h2 class="section-title">把做过的事情整理成能快速浏览的项目卡片</h2></div>
-          <p class="section-intro">这里适合放课程项目、研究项目、写作成果、网页作品或其他代表性经历。现在先用占位卡片撑起结构，后面可以逐个替换。</p>
+          <div><p class="eyebrow">Projects / 项目经历</p></div>
         </div>
         <div class="filters fade-in" data-group="projects">
           <button class="filter-chip active" data-filter="all">全部</button>
+          <button class="filter-chip" data-filter="health">AI+健康促进项目</button>
           <button class="filter-chip" data-filter="research">研究项目</button>
-          <button class="filter-chip" data-filter="writing">写作项目</button>
-          <button class="filter-chip" data-filter="design">网页项目</button>
+          <button class="filter-chip" data-filter="writing">交流项目</button>
         </div>
         <div class="projects-grid">
-          <article class="project-card fade-in" data-group="projects" data-category="design"><div class="project-visual"></div><h3>个人网站搭建</h3><p>展示你如何从最初的简单页面出发，把它整理成一个完整、清晰、可展示的个人主页。</p><div class="tag-row"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="project-link" href="#contact">查看联系方式 →</a></article>
-          <article class="project-card fade-in" data-group="projects" data-category="research"><div class="project-visual"></div><h3>研究类项目</h3><p>这里可以放你的研究兴趣、课程论文、读书整理或者任何能体现思考深度的项目经历。</p><div class="tag-row"><span>Research</span><span>Portfolio</span><span>Statement</span></div><a class="project-link" href="#journey">查看兴趣爱好 →</a></article>
-          <article class="project-card fade-in" data-group="projects" data-category="writing"><div class="project-visual"></div><h3>写作类项目</h3><p>如果你有文章、翻译、讲稿、论文摘要或双语表达成果，可以在这里集中展示出来。</p><div class="tag-row"><span>Writing</span><span>Bilingual</span><span>Content</span></div><a class="project-link" href="#about">回到个人介绍 →</a></article>
+          <article class="project-card fade-in" data-group="projects" data-category="health"><div class="project-visual"></div><h3>眼睑结膜肿瘤早诊早治与长期随访的健康促进模式研究</h3><p>结合问卷与SQL，建立健康促进成效评价体系，探索健康促进模式。</p><div class="tag-row"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="project-link" href="#contact">查看联系方式 →</a></article>
+          <article class="project-card fade-in" data-group="projects" data-category="research"><div class="project-visual has-image"><img src="CAF.jpg" alt="CAFs 论文截图"></div><h3>Cancer-associated fibroblasts in the tumor microenvironment: heterogeneity, crosstalk mechanisms, and therapeutic implications</h3><p>发表在Molecular Cancer，探讨肿瘤微环境中癌相关成纤维细胞（CAFs）的类型、相互作用、治疗效用。</p><div class="tag-row"><span>Research</span><span>Biorender</span><span>Review</span></div><a class="project-link" href="https://pubmed.ncbi.nlm.nih.gov/41413569/" target="_blank" rel="noreferrer">原文链接 →</a></article>
+          <article class="project-card fade-in" data-group="projects" data-category="research"><div class="project-visual has-image"><img src="AJCC.jpg" alt="AJCC 项目截图"></div><h3>参与AJCC Version 9 Cancer Staging System写作</h3><p>涉及Locally Advanced Sebaceous Carcinoma与Mucinous eccrine carcinoma，主要包括病种的亚型、分期、预后、诊断与治疗方式，以及illustrative cases。</p><div class="tag-row"><span>Writing</span><span>Review</span><span>Statement</span></div></article>
+          <article class="project-card fade-in" data-group="projects" data-category="writing"><div class="project-visual has-image"><img src="uottawa.jpg" alt="UGME 项目照片"></div><h3>the Ottawa-Shanghai Joint School of Medicine (OSJSM) Undergraduate Medical Education program (UGME)</h3><p>渥太华大学与上海交大医学院联合的医学教育遴选项目</p><div class="tag-row"><span>Writing</span><span>Bilingual</span><span>Communication</span></div></article>
         </div>
       </div>
     </section>
