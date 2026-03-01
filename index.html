@@ -1,92 +1,624 @@
-<!DOCTYPE html>
-<html lang="zh">
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>欢迎来到李金昕的个人主页！</title>
+  <title>李金昕 | 个人网站</title>
+  <meta name="description" content="李金昕的个人网站，展示研究兴趣、项目、服务方向与联系方式。">
   <style>
+    :root {
+      --text: #18201c;
+      --muted: #5e685f;
+      --brand: #0f766e;
+      --brand-strong: #115e59;
+      --accent: #ef7c5d;
+      --panel: rgba(255, 250, 243, 0.82);
+      --shadow: 0 20px 50px rgba(34, 32, 23, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --nav-height: 76px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, "PingFang SC", "Microsoft YaHei";
-      background: #f5f7fa;
-      color: #333;
+      color: var(--text);
+      font-family: "Trebuchet MS", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(239, 124, 93, 0.22), transparent 28%),
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.18), transparent 24%),
+        linear-gradient(180deg, #f7f1e8 0%, #efe5d6 100%);
     }
-
-    .container {
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 20px;
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px);
+      background: rgba(246, 240, 232, 0.72); border-bottom: 1px solid rgba(24, 32, 28, 0.06);
     }
-
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; height: var(--nav-height); gap: 24px;
     }
-
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 16px;
-      margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    .brand { display: flex; align-items: center; gap: 14px; font-weight: 700; letter-spacing: 0.04em; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--brand), #2aa198); color: #fff8ef;
+      box-shadow: 0 10px 18px rgba(15, 118, 110, 0.28);
     }
-
-    a {
-      color: #4f46e5;
-      text-decoration: none;
+    .brand-copy strong, .section-title, .hero-copy h1, .project-card h3, .service-card h3, .timeline-item h3, .contact-panel h3 {
+      font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
     }
-
-    a:hover {
-      text-decoration: underline;
+    .brand-copy small { display: block; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links {
+      display: flex; align-items: center; gap: 10px; padding: 8px; border: 1px solid rgba(24, 32, 28, 0.08);
+      background: rgba(255, 253, 248, 0.72); border-radius: 999px;
     }
-
-    button {
-      margin-top: 10px;
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: none;
-      background: #4f46e5;
-      color: white;
-      cursor: pointer;
+    .nav-links a { padding: 10px 16px; border-radius: 999px; color: var(--muted); transition: 0.25s ease; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(15, 118, 110, 0.12); color: var(--text); }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-
-    button:hover {
-      opacity: 0.9;
+    .nav-cta, .primary-button, .submit-button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 22px;
+      border-radius: 999px; background: var(--text); color: #fff9f1; border: none; cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .secondary-button, .filter-chip {
+      display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.48); border: 1px solid rgba(24, 32, 28, 0.1); color: var(--text); cursor: pointer;
+      transition: 0.25s ease;
+    }
+    .nav-cta:hover, .primary-button:hover, .secondary-button:hover, .filter-chip:hover, .submit-button:hover {
+      transform: translateY(-2px); box-shadow: 0 16px 26px rgba(24, 32, 28, 0.12);
+    }
+    .menu-toggle {
+      display: none; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(24, 32, 28, 0.12);
+      background: rgba(255, 253, 248, 0.8);
+    }
+    main { padding-bottom: 80px; }
+    section { scroll-margin-top: 108px; }
+    .hero { padding: 42px 0 28px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.9fr); gap: 24px; }
+    .hero-card, .hero-side, .section-card, .project-card, .service-card, .timeline-item, .contact-panel, .contact-card, .stat-card {
+      border: 1px solid rgba(24, 32, 28, 0.08); background: var(--panel); border-radius: var(--radius-xl); box-shadow: var(--shadow); backdrop-filter: blur(12px);
+    }
+    .hero-card { padding: 38px; position: relative; overflow: hidden; min-height: 460px; }
+    .hero-card::after {
+      content: ""; position: absolute; inset: auto -90px -140px auto; width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(15, 118, 110, 0.24), transparent 68%);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.56); color: var(--brand-strong); font-size: 0.92rem; letter-spacing: 0.04em;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 8px rgba(239, 124, 93, 0.12); }
+    .hero-copy h1 {
+      font-size: clamp(3rem, 5vw, 5.6rem); line-height: 0.96; margin: 24px 0 18px; letter-spacing: -0.04em; max-width: 11ch;
+    }
+    .slash-highlight {
+      color: var(--brand-strong);
+      font-size: 1.12em;
+    }
+    .hero-small {
+      font-size: 0.68em;
+    }
+    .hero-copy p, .section-intro, .project-card p, .service-card p, .timeline-item p, .contact-panel p, .contact-card p, .mini-panel p, .mini-panel li, .stat-card span {
+      color: var(--muted); line-height: 1.75;
+    }
+    .type-line { margin-top: 24px; font-size: 1rem; color: var(--brand-strong); min-height: 28px; }
+    .type-line span { border-right: 2px solid rgba(17, 94, 89, 0.6); padding-right: 6px; animation: blink 0.8s step-end infinite; }
+    @keyframes blink { 50% { border-color: transparent; } }
+    .hero-actions, .filters, .socials, .tag-row, .skill-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-actions { margin-top: 34px; gap: 14px; }
+    .hero-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 36px; }
+    .stat-card { padding: 20px; border-radius: var(--radius-lg); background: rgba(255, 253, 248, 0.66); }
+    .stat-card strong { display: block; font-size: 1.8rem; margin-bottom: 6px; }
+    .hero-side { padding: 20px; display: grid; gap: 18px; align-content: start; }
+    .portrait {
+      position: relative; min-height: 390px; border-radius: 24px; overflow: hidden;
+      background: linear-gradient(160deg, rgba(15, 118, 110, 0.78), rgba(24, 32, 28, 0.76));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .portrait::before {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      background:
+        linear-gradient(135deg, rgba(15, 118, 110, 0.18), rgba(24, 32, 28, 0.18)),
+        url("profile-photo.jpg") center/cover no-repeat;
+      filter: blur(18px) saturate(0.92);
+      transform: scale(1.08);
+    }
+    .portrait::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 28%), linear-gradient(135deg, rgba(255,255,255,0.06), transparent 40%);
+      pointer-events: none;
+    }
+    .portrait img {
+      position: relative;
+      z-index: 1;
+      width: calc(100% - 36px);
+      height: calc(100% - 36px);
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(24, 32, 28, 0.2);
+    }
+    .portrait-badge {
+      position: absolute; left: 18px; right: 18px; bottom: 18px; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 16px 18px; border-radius: 18px; background: rgba(255, 251, 246, 0.12); border: 1px solid rgba(255, 255, 255, 0.18); color: #fff7ed; backdrop-filter: blur(10px);
+    }
+    .mini-panels, .contact-stack { display: grid; gap: 18px; }
+    .mini-panel, .info-pill, .contact-item {
+      padding: 18px; border-radius: var(--radius-lg); background: rgba(255, 253, 248, 0.72); border: 1px solid rgba(24, 32, 28, 0.08);
+    }
+    .mini-panel ul { margin: 14px 0 0; padding-left: 18px; }
+    .section-block { padding: 28px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; }
+    .section-title { margin: 0; font-size: clamp(2rem, 3vw, 3.2rem); letter-spacing: -0.04em; }
+    .grid-two, .projects-grid, .services-grid, .timeline-grid, .contact-grid, .info-list {
+      display: grid; gap: 22px;
+    }
+    .grid-two, .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .info-list { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 22px; gap: 14px; }
+    .section-card, .project-card, .service-card, .timeline-item, .contact-panel, .contact-card { padding: 24px; }
+    .skill-cloud {
+      position: relative;
+      margin-top: 28px;
+      min-height: 250px;
+    }
+    .skill-cloud span {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+      padding: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.92), rgba(210, 244, 240, 0.78) 45%, rgba(146, 210, 203, 0.54) 100%);
+      color: var(--brand-strong);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 14px 30px rgba(15, 118, 110, 0.12);
+      backdrop-filter: blur(8px);
+      animation: floatBubble 4.8s ease-in-out infinite;
+      overflow: hidden;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .skill-cloud span::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 18px;
+      left: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.72);
+      filter: blur(0.5px);
+    }
+    .skill-cloud span::after {
+      content: "";
+      position: absolute;
+      inset: 6% 4% auto auto;
+      width: 92%;
+      height: 92%;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      pointer-events: none;
+    }
+    .skill-cloud span:nth-child(1) { top: 8px; left: 28px; animation-delay: 0s; }
+    .skill-cloud span:nth-child(2) { top: 18px; left: 172px; animation-delay: 0.8s; }
+    .skill-cloud span:nth-child(3) { top: 112px; left: 92px; animation-delay: 1.6s; }
+    .skill-cloud span:nth-child(4) { top: 122px; left: 252px; animation-delay: 1.2s; }
+    .skill-cloud span:nth-child(5) { top: 66px; left: 304px; animation-delay: 2s; }
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .filter-chip { padding: 11px 16px; color: var(--muted); }
+    .filter-chip.active { background: var(--text); color: #fffaf3; border-color: transparent; }
+    .projects-grid, .services-grid, .timeline-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .project-visual {
+      aspect-ratio: 4 / 3; border-radius: 22px; margin-bottom: 20px; overflow: hidden; position: relative;
+      background: linear-gradient(150deg, rgba(15, 118, 110, 0.16), rgba(239, 124, 93, 0.2));
+    }
+    .project-visual::before, .project-visual::after { content: ""; position: absolute; border-radius: 24px; transform: rotate(-9deg); }
+    .project-visual::before { inset: 16px 70px 60px 16px; background: rgba(255, 253, 248, 0.82); }
+    .project-visual::after { inset: 72px 18px 18px 96px; background: rgba(24, 32, 28, 0.82); }
+    .project-card h3, .service-card h3, .timeline-item h3 { margin: 0 0 12px; font-size: 1.5rem; letter-spacing: -0.03em; }
+    .section-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.85rem;
+      letter-spacing: -0.03em;
+    }
+    .tag-row span { padding: 8px 12px; border-radius: 999px; background: rgba(24, 32, 28, 0.06); color: var(--muted); font-size: 0.92rem; }
+    .project-link { display: inline-flex; align-items: center; gap: 8px; color: var(--brand-strong); font-weight: 700; }
+    .service-card { position: relative; overflow: hidden; }
+    .service-card::after {
+      content: ""; position: absolute; width: 110px; height: 110px; right: -22px; bottom: -22px; border-radius: 26px; background: rgba(15, 118, 110, 0.08); transform: rotate(12deg);
+    }
+    .service-index, .timeline-item time {
+      display: inline-flex; padding: 8px 12px; margin-bottom: 16px; border-radius: 999px; background: rgba(15, 118, 110, 0.1); color: var(--brand-strong); font-size: 0.92rem;
+    }
+    .contact-panel form { display: grid; gap: 14px; margin-top: 20px; }
+    .field {
+      padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(24, 32, 28, 0.1); background: rgba(255, 255, 255, 0.6); color: var(--text);
+    }
+    textarea.field { min-height: 140px; resize: vertical; }
+    .footer { padding: 20px 0 60px; color: var(--muted); }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 24px; border-top: 1px solid rgba(24, 32, 28, 0.08);
+    }
+    .socials a { padding: 10px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.54); border: 1px solid rgba(24, 32, 28, 0.08); }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .toast {
+      position: fixed; right: 18px; bottom: 18px; z-index: 30; padding: 14px 18px; border-radius: 18px;
+      background: rgba(24, 32, 28, 0.92); color: #fffaf3; opacity: 0; transform: translateY(20px); pointer-events: none; transition: 0.28s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 1100px) {
+      .hero-grid, .projects-grid, .services-grid, .timeline-grid, .contact-grid, .grid-two { grid-template-columns: 1fr; }
+      .hero-card { min-height: auto; }
+    }
+    @media (max-width: 820px) {
+      .nav-links, .nav-actions { display: none; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav-links.mobile-open {
+        display: grid; position: absolute; left: 16px; right: 16px; top: calc(var(--nav-height) - 6px); padding: 14px; gap: 8px;
+        border-radius: 24px; background: rgba(255, 251, 246, 0.96); box-shadow: var(--shadow);
+      }
+      .nav-links.mobile-open a { padding: 14px 16px; border-radius: 16px; }
+      .hero-card { padding: 28px 24px; }
+      .hero-meta, .info-list, .footer-inner { grid-template-columns: 1fr; }
+      .section-head, .footer-inner { align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 540px) {
+      .shell { width: min(100% - 20px, 1180px); }
+      .hero-copy h1 { font-size: 2.7rem; }
+      .hero-actions, .filters, .socials { flex-direction: column; }
+      .primary-button, .secondary-button, .submit-button, .nav-cta, .filter-chip, .socials a { width: 100%; }
+      .skill-cloud {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .skill-cloud span {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-radius: 999px;
+        animation: none;
+      }
+    }
+    @media print {
+      body {
+        background: #ffffff;
+        color: #111111;
+      }
+      .site-header,
+      .hero-actions,
+      .filters,
+      .toast,
+      .menu-toggle,
+      .socials,
+      .project-link,
+      .submit-button {
+        display: none !important;
+      }
+      .shell {
+        width: 100%;
+      }
+      .hero,
+      .section-block,
+      .footer {
+        padding: 12px 0;
+      }
+      .hero-grid,
+      .grid-two,
+      .projects-grid,
+      .services-grid,
+      .timeline-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .hero-card,
+      .hero-side,
+      .section-card,
+      .project-card,
+      .service-card,
+      .timeline-item,
+      .contact-panel,
+      .contact-card,
+      .stat-card,
+      .mini-panel,
+      .contact-item,
+      .info-pill {
+        background: #ffffff;
+        border: 1px solid #d9d9d9;
+        box-shadow: none;
+        backdrop-filter: none;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .hero-card {
+        min-height: auto;
+      }
+      .portrait,
+      .project-visual {
+        min-height: 0;
+        background: #f3f3f3;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .portrait-badge {
+        color: #111111;
+        background: rgba(255, 255, 255, 0.88);
+        border-color: #d9d9d9;
+      }
+      .fade-in {
+        opacity: 1;
+        transform: none;
+      }
+      .type-line span {
+        border-right: none;
+        animation: none;
+      }
+      a {
+        color: #111111;
+        text-decoration: none;
+      }
+      .footer {
+        padding-bottom: 0;
+      }
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <h1>你好，我是 李金昕 👋</h1>
-    <p>中文→法学→临床 | 音乐爱好者 | 喜欢探索技术与科学结合</p>
-
-    <div class="card">
-      <h2>关于我</h2>
-      <p>这里写你的自我介绍。比如研究兴趣、方向、目标等。</p>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top">
+        <span class="brand-mark">L</span>
+        <span class="brand-copy"><strong>LI JINXIN</strong><small>A Slashie</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">个人介绍</a>
+        <a href="#projects">项目经历</a>
+        <a href="#services">社会实践</a>
+        <a href="#journey">兴趣爱好</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="nav-cta" href="#contact">联系方式</a>
+        <button class="secondary-button" type="button" id="printButton">Print</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单">☰</button>
     </div>
-
-    <div class="card">
-      <h2>项目</h2>
-      <ul>
-        <li>项目1：xxxxx</li>
-        <li>项目2：xxxxx</li>
-      </ul>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <article class="hero-card fade-in">
+          <div class="eyebrow"><span class="dot"></span>这是我的个人网站</div>
+          <div class="hero-copy">
+            <h1><span class="hero-small">一名</span><br><span class="slash-highlight">斜杠医学生</span><br><span class="hero-small">的成长史</span></h1>
+            <p>你好，我是李金昕，我总有很多奇思妙想。<br>初高中的文科生→大学的医学生+“艺术生”→未来的？</p>
+            <div class="type-line">现在聚焦：<span id="typingText"></span></div>
+          </div>
+          <div class="hero-actions">
+            <a class="primary-button" href="#projects">项目概览</a>
+            <a class="secondary-button" href="#about">认识我</a>
+          </div>
+        </article>
+        <aside class="hero-side fade-in">
+          <div class="portrait">
+            <img src="profile-photo.jpg" alt="李金昕的照片">
+            <div class="portrait-badge"><div><strong>Shanghai, 2025</strong></div></div>
+          </div>
+          <div class="mini-panels">
+            <div class="mini-panel"><strong>教育经历</strong><ul><li>上海交通大学医学院 | 临床五年制（英语班）</li><li>上海交通大学 | 法学+中文</li></ul></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="section-block" id="about">
+      <div class="shell">
+        <div class="section-head fade-in">
+          <div><p class="eyebrow">Profile / 个人介绍</p></div>
+        </div>
+        <div class="grid-two">
+          <article class="section-card fade-in">
+            <h3>基本介绍</h3>
+            <p>你可以在这里写你的专业背景、学习方向、核心关注点，以及你希望别人记住你的方式。它可以偏学术，也可以偏个人品牌表达。</p>
+            <div class="info-list">
+              <div class="info-pill"><strong>身份标签</strong><span>学生 / 多方向探索 / 可公开展示</span></div>
+              <div class="info-pill"><strong>个人气质</strong><span>理性、细腻、跨领域、有表达欲</span></div>
+              <div class="info-pill"><strong>展示重点</strong><span>经历、项目、服务、兴趣与联系渠道</span></div>
+              <div class="info-pill"><strong>后续扩展</strong><span>可继续加入简历、博客、照片和真实链接</span></div>
+            </div>
+          </article>
+          <article class="section-card fade-in">
+            <h3>我的关键词</h3>
+            <p>更直观地认识我……</p>
+            <div class="skill-cloud"><span>临床医学</span><span>跨学科</span><span>音乐爱好者</span><span>志愿服务</span><span>vibe coding</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section-block" id="projects">
+      <div class="shell">
+        <div class="section-head fade-in">
+          <div><p class="eyebrow">Projects / 项目经历</p><h2 class="section-title">把做过的事情整理成能快速浏览的项目卡片</h2></div>
+          <p class="section-intro">这里适合放课程项目、研究项目、写作成果、网页作品或其他代表性经历。现在先用占位卡片撑起结构，后面可以逐个替换。</p>
+        </div>
+        <div class="filters fade-in" data-group="projects">
+          <button class="filter-chip active" data-filter="all">全部</button>
+          <button class="filter-chip" data-filter="research">研究项目</button>
+          <button class="filter-chip" data-filter="writing">写作项目</button>
+          <button class="filter-chip" data-filter="design">网页项目</button>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card fade-in" data-group="projects" data-category="design"><div class="project-visual"></div><h3>个人网站搭建</h3><p>展示你如何从最初的简单页面出发，把它整理成一个完整、清晰、可展示的个人主页。</p><div class="tag-row"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="project-link" href="#contact">查看联系方式 →</a></article>
+          <article class="project-card fade-in" data-group="projects" data-category="research"><div class="project-visual"></div><h3>研究类项目</h3><p>这里可以放你的研究兴趣、课程论文、读书整理或者任何能体现思考深度的项目经历。</p><div class="tag-row"><span>Research</span><span>Portfolio</span><span>Statement</span></div><a class="project-link" href="#journey">查看兴趣爱好 →</a></article>
+          <article class="project-card fade-in" data-group="projects" data-category="writing"><div class="project-visual"></div><h3>写作类项目</h3><p>如果你有文章、翻译、讲稿、论文摘要或双语表达成果，可以在这里集中展示出来。</p><div class="tag-row"><span>Writing</span><span>Bilingual</span><span>Content</span></div><a class="project-link" href="#about">回到个人介绍 →</a></article>
+        </div>
+      </div>
+    </section>
+    <section class="section-block" id="services">
+      <div class="shell">
+        <div class="section-head fade-in">
+          <div><p class="eyebrow">Practice / 社会实践</p><h2 class="section-title">把你参与过的实践活动、组织工作和责任感展示出来</h2></div>
+          <p class="section-intro">这一部分可以放志愿活动、社会调研、学生工作、活动组织或其他实践经历，让页面不只是展示项目，也展示你和现实世界的连接。</p>
+        </div>
+        <div class="filters fade-in" data-group="practice">
+          <button class="filter-chip active" data-filter="all">全部</button>
+          <button class="filter-chip" data-filter="volunteer">志愿服务</button>
+          <button class="filter-chip" data-filter="organization">组织协调</button>
+          <button class="filter-chip" data-filter="public">公共参与</button>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card fade-in" data-group="practice" data-category="volunteer"><div class="project-visual"></div><h3>志愿服务</h3><p>可以写你参加过的志愿活动、服务对象、参与方式，以及你在其中承担的职责。</p><div class="tag-row"><span>Volunteer</span><span>Service</span><span>Care</span></div><a class="project-link" href="#contact">继续交流 →</a></article>
+          <article class="project-card fade-in" data-group="practice" data-category="organization"><div class="project-visual"></div><h3>组织协调</h3><p>适合放学生组织、活动筹备、项目协作或班级事务等经历，体现你的执行力和责任感。</p><div class="tag-row"><span>Teamwork</span><span>Execution</span><span>Leadership</span></div><a class="project-link" href="#about">回到个人介绍 →</a></article>
+          <article class="project-card fade-in" data-group="practice" data-category="public"><div class="project-visual"></div><h3>公共参与</h3><p>如果你有讲座、社群、公益、调研或其他社会参与经历，也可以放在这里统一展示。</p><div class="tag-row"><span>Public</span><span>Practice</span><span>Impact</span></div><a class="project-link" href="#journey">查看兴趣爱好 →</a></article>
+        </div>
+      </div>
+    </section>
+    <section class="section-block" id="journey">
+      <div class="shell">
+        <div class="section-head fade-in">
+          <div><p class="eyebrow">Interest / 兴趣爱好</p><h2 class="section-title">用几个清楚的小块展示你在学习之外的兴趣世界</h2></div>
+          <p class="section-intro">这里不一定非要做成时间线，也可以用几个兴趣主题来展示你的性格、审美和长期热爱，让页面更像你本人。</p>
+        </div>
+        <div class="filters fade-in" data-group="interest">
+          <button class="filter-chip active" data-filter="all">全部</button>
+          <button class="filter-chip" data-filter="music">音乐</button>
+          <button class="filter-chip" data-filter="reading">阅读与表达</button>
+          <button class="filter-chip" data-filter="explore">探索新领域</button>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card fade-in" data-group="interest" data-category="music"><div class="project-visual"></div><h3>音乐</h3><p>可以写你喜欢的音乐类型、乐器、歌单或者音乐在你生活里扮演的角色。</p><div class="tag-row"><span>Music</span><span>Emotion</span><span>Playlist</span></div><a class="project-link" href="#contact">分享交流 →</a></article>
+          <article class="project-card fade-in" data-group="interest" data-category="reading"><div class="project-visual"></div><h3>阅读与表达</h3><p>适合放你喜欢的书、作者、写作习惯，或者你如何通过表达来整理自己的思考。</p><div class="tag-row"><span>Reading</span><span>Writing</span><span>Thinking</span></div><a class="project-link" href="#projects">回到项目经历 →</a></article>
+          <article class="project-card fade-in" data-group="interest" data-category="explore"><div class="project-visual"></div><h3>探索新领域</h3><p>这里可以写跨学科兴趣、新技术、新主题，或者任何能代表你好奇心的内容。</p><div class="tag-row"><span>Curiosity</span><span>AI</span><span>Interdisciplinary</span></div><a class="project-link" href="#about">了解我 →</a></article>
+        </div>
+      </div>
+    </section>
+    <section class="section-block" id="contact">
+      <div class="shell">
+        <div class="section-head fade-in">
+          <div><p class="eyebrow">Contact / 联系方式</p><h2 class="section-title">更进一步和我交流……</h2></div>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-panel fade-in">
+            <p>留言板</p>
+            <form id="contactForm">
+              <input class="field" type="text" name="name" placeholder="你的名字">
+              <input class="field" type="email" name="email" placeholder="你的邮箱">
+              <textarea class="field" name="message" placeholder="想聊点什么？"></textarea>
+              <button class="submit-button" type="submit">发送消息</button>
+            </form>
+          </article>
+          <aside class="contact-card fade-in">
+            <h3>直接联系</h3>
+            <p>我的联系方式：</p>
+            <div class="contact-stack">
+              <div class="contact-item"><strong>Email: </strong><a href="mailto:lisuanna9@gmail.com">lisuanna9@gmail.com</a></div>
+              <div class="contact-item"><strong>GitHub: </strong><a href="https://github.com/lisuanna9-star" target="_blank" rel="noreferrer">https://github.com/lisuanna9-star</a></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <div class="socials"><a href="#about">About</a><a href="#projects">Projects</a><a href="#services">Practice</a><a href="#contact">Contact</a></div>
     </div>
-
-    <div class="card">
-      <h2>联系我</h2>
-      <p>Email：your@email.com</p>
-      <button onclick="showMessage()">点我</button>
-    </div>
-  </div>
-
+  </footer>
+  <div class="toast" id="toast">消息已收到。现在这是前端演示版，后续可接入真实表单服务。</div>
   <script>
-    function showMessage() {
-      alert("欢迎来到我的个人主页 🚀");
+    const typingText = document.getElementById("typingText");
+    const phrases = ["医学与AI领域的交叉"];
+    let phraseIndex = 0;
+    let letterIndex = 0;
+    let isDeleting = false;
+    function typeLoop() {
+      const current = phrases[phraseIndex];
+      letterIndex += isDeleting ? -1 : 1;
+      typingText.textContent = current.slice(0, letterIndex);
+      let delay = isDeleting ? 40 : 85;
+      if (!isDeleting && letterIndex === current.length) { delay = 1500; isDeleting = true; }
+      else if (isDeleting && letterIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; delay = 320; }
+      window.setTimeout(typeLoop, delay);
     }
-  </script>
+    typeLoop();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("visible"); });
+    }, { threshold: 0.16 });
+    document.querySelectorAll(".fade-in").forEach((item) => observer.observe(item));
+    document.querySelectorAll(".filters[data-group]").forEach((filterGroup) => {
+      const groupName = filterGroup.dataset.group;
+      const chips = filterGroup.querySelectorAll(".filter-chip");
+      const cards = document.querySelectorAll(`.project-card[data-group="${groupName}"]`);
+      chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          chips.forEach((item) => item.classList.remove("active"));
+          chip.classList.add("active");
+          const target = chip.dataset.filter;
+          cards.forEach((card) => {
+            const show = target === "all" || card.dataset.category === target;
+            card.style.display = show ? "" : "none";
+          });
+        });
+      });
+    });
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-open");
+      document.body.classList.toggle("menu-open");
+    });
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("mobile-open");
+        document.body.classList.remove("menu-open");
+      });
+    });
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const navAnchors = [...navLinks.querySelectorAll("a")];
+    function updateActiveNav() {
+      const current = sections.find((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= 150 && rect.bottom >= 150;
+      });
+      navAnchors.forEach((anchor) => {
+        anchor.classList.toggle("active", current && anchor.getAttribute("href") === "#" + current.id);
+      });
+    }
+    window.addEventListener("scroll", updateActiveNav, { passive: true });
+    updateActiveNav();
+    const toast = document.getElementById("toast");
+    const contactForm = document.getElementById("contactForm");
+    const printButton = document.getElementById("printButton");
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 2600);
+      contactForm.reset();
+    });
+    printButton.addEventListener("click", () => {
+      window.print();
+    });
 
+  </script>
 </body>
 </html>
